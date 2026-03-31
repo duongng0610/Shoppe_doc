@@ -1,19 +1,38 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{Abstract}{i}{table.caption.2}%
-\contentsline {chapter}{List of Figures}{ii}{chapter*.3}%
-\contentsline {chapter}{List of Tables}{iii}{chapter*.4}%
-\contentsline {chapter}{\numberline {1}The title of chapter one}{1}{chapter.1}%
+\contentsline {chapter}{List of Figures}{iii}{chapter*.3}%
+\contentsline {chapter}{List of Tables}{iv}{chapter*.4}%
+\contentsline {chapter}{\numberline {1}Giới thiệu}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}This is section one}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}This is section two}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.2}This is section two}{4}{section.1.2}%
 \contentsline {section}{\numberline {1.3}This is section three}{6}{section.1.3}%
-\contentsline {chapter}{\numberline {2}The title of chapter two}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}This is section one}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}This is section two}{12}{section.2.2}%
-\contentsline {section}{\numberline {2.3}This is section three}{14}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Consectetuer adipiscing elit}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}This is section one}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}This is section two}{20}{section.3.2}%
-\contentsline {chapter}{References}{23}{chapter*.9}%
-\contentsline {chapter}{Appendices}{24}{section*.10}%
-\contentsline {chapter}{\numberline {A}This is title of appendix A}{24}{appendix.1.A}%
-\contentsline {chapter}{\numberline {B}This is title of appendix B}{26}{appendix.1.B}%
+\contentsline {chapter}{\numberline {2}Chức năng}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Chức năng quản lý sản phẩm}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Chức năng quản lý đơn hàng}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Chức năng quản lý khách hàng}{9}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Chức năng báo cáo và phân tích}{9}{section.2.4}%
+\contentsline {section}{\numberline {2.5}This is section one}{10}{section.2.5}%
+\contentsline {section}{\numberline {2.6}This is section two}{13}{section.2.6}%
+\contentsline {section}{\numberline {2.7}This is section three}{15}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Triển khai dự án}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Mô hình ER của hệ thống}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Mô hình quan hệ}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Đặc tả dữ liệu}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Mối quan hệ giữa các bảng}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Danh sách các ràng buộc dữ liệu}{19}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Cải đặt vật lý}{19}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Các ràng buộc sử dụng các câu lệnh ALTER TABLE}{19}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Viết câu truy vấn}{19}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Hàm}{19}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Trigger}{19}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Procedure}{20}{section.3.11}%
+\contentsline {section}{\numberline {3.12}View}{20}{section.3.12}%
+\contentsline {section}{\numberline {3.13}Index}{20}{section.3.13}%
+\contentsline {section}{\numberline {3.14}Transaction}{20}{section.3.14}%
+\contentsline {chapter}{References}{21}{chapter*.9}%
+\contentsline {chapter}{Appendices}{22}{section*.10}%
+\contentsline {chapter}{\numberline {A}Conclusion}{22}{appendix.1.A}%
+\contentsline {section}{\numberline {A.1}Điểm mạnh}{22}{section.1.A.1}%
+\contentsline {section}{\numberline {A.2}Điểm yếu}{22}{section.1.A.2}%
+\contentsline {section}{\numberline {A.3}Kết luận Cuối}{22}{section.1.A.3}%
+\contentsline {chapter}{\numberline {B}Khuyến nghị và Hướng phát triển}{23}{appendix.1.B}%

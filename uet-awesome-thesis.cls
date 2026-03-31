@@ -46,12 +46,13 @@
 	\definecolor{Crimson}{rgb}{0.6471, 0.1098, 0.1882}
 	
 	\hypersetup{
-		linktocpage,
 		colorlinks,
 		citecolor=black,
 		filecolor=black,
 		linkcolor=black,
 		urlcolor=black,
+		pdfborder={0 0 0},
+		bookmarksnumbered=true,
 	}
 	
 	\RequirePackage{url}

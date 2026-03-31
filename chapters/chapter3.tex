@@ -1,18 +1,64 @@
 \begin{savequote}[75mm] 
-Nulla facilisi. In vel sem. Morbi id urna in diam dignissim feugiat. Proin molestie tortor eu velit. Aliquam erat volutpat. Nullam ultrices, diam tempus vulputate egestas, eros pede varius leo.
-\qauthor{Quoteauthor Lastname} 
+Triển khai tốt là chìa khóa để chuyển từ thiết kế sang thực tế.
+\qauthor{Quản lý dự án} 
 \end{savequote}
 
-\chapter{Consectetuer adipiscing elit}
+\chapter{Triển khai dự án}
 
-\newthought{Lorem ipsum dolor sit amet}, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.
+\newthought{Triển khai hệ thống cơ sở dữ liệu} e-commerce yêu cầu một kế hoạch chi tiết từ thiết kế đến triển khai. Phần này trình bày các bước triển khai và các công nghệ được sử dụng.
 
-\blindtext
+\section{Mô hình ER của hệ thống}
 
-\section{This is section one}
-\blindtext
-\blindmathpaper
+Mô hình ER (Entity-Relationship) biểu diễn các thực thể chính và mối quan hệ giữa chúng trong hệ thống.
 
-\section{This is section two}
-\blindtext
-\blindmathpaper
+\section{Mô hình quan hệ}
+
+Mô hình quan hệ chuyển đổi mô hình ER sang các bảng cơ sở dữ liệu.
+
+\section{Đặc tả dữ liệu}
+
+Định nghĩa chi tiết các kiểu dữ liệu, độ dài, và ràng buộc cho mỗi cột.
+
+\section{Mối quan hệ giữa các bảng}
+
+Xác định khóa ngoại (Foreign Key) và thiết lập mối quan hệ giữa các bảng.
+
+\section{Danh sách các ràng buộc dữ liệu}
+
+Liệt kê tất cả các ràng buộc như UNIQUE, NOT NULL, CHECK.
+
+\section{Cải đặt vật lý}
+
+Tối ưu hóa cơ sở dữ liệu ở mức vật lý bao gồm chỉ mục và phân vùng.
+
+\section{Các ràng buộc sử dụng các câu lệnh ALTER TABLE}
+
+Thêm và sửa đổi ràng buộc sau khi tạo bảng.
+
+\section{Viết câu truy vấn}
+
+Các câu lệnh SQL SELECT, INSERT, UPDATE, DELETE để xử lý dữ liệu.
+
+\section{Hàm}
+
+Định nghĩa các hàm người dùng để xử lý logic dữ liệu phức tạp.
+
+\section{Trigger}
+
+Tạo các trigger để tự động thực hiện các hành động khi có thay đổi dữ liệu.
+
+\section{Procedure}
+
+Xây dựng các procedure lưu trữ cho các quy trình kinh doanh.
+
+\section{View}
+
+Tạo các view để đơn giản hóa truy vấn phức tạp.
+
+\section{Index}
+
+Thiết kế chỉ mục để tối ưu hóa hiệu suất truy vấn.
+
+\section{Transaction}
+
+Quản lý giao dịch để đảm bảo tính nhất quán dữ liệu.
