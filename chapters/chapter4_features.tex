@@ -1,0 +1,231 @@
+\begin{savequote}[75mm]
+Chức năng là linh hồn của hệ thống.
+\qauthor{Phát triển phần mềm}
+\end{savequote}
+
+\chapter{Triển khai các chức năng bổ sung cho hệ thống}
+
+\newthought{Các chức năng bổ sung} đóng vai trò quan trọng trong việc nâng cao trải nghiệm người dùng và hỗ trợ quyết định kinh doanh. Phần này trình bày chi tiết cài đặt từng tính năng bao gồm giải thích cơ chế, cài đặt vật lý và câu lệnh truy vấn.
+
+\section{Chức năng cho guest (chưa đăng nhập)}
+
+\subsection{4.1.1 Đăng ký}
+
+\subsubsection{Giải thích cơ chế}
+
+Chức năng đăng ký cho phép người dùng tạo tài khoản mới. Hệ thống sẽ:
+\begin{enumerate}
+    \item Kiểm tra email đã tồn tại chưa
+    \item Hash mật khẩu trước khi lưu
+    \item Tạo bản ghi trong bảng \texttt{accounts}
+    \item Gửi email xác nhận
+\end{enumerate}
+
+\subsubsection{Cài đặt vật lý}
+
+\begin{verbatim}
+CREATE TABLE registration_log (
+    registration_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255),
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'verified', 'failed')
+);
+
+CREATE TRIGGER trg_log_new_registration
+AFTER INSERT ON accounts
+FOR EACH ROW
+BEGIN
+    INSERT INTO registration_log (email, status)
+    VALUES (NEW.email, 'pending');
+END;
+\end{verbatim}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\begin{verbatim}
+-- Kiểm tra email tồn tại
+SELECT account_id FROM accounts WHERE email = ?;
+
+-- Thêm tài khoản mới
+INSERT INTO accounts (email, password_hash, role, status)
+VALUES (?, SHA2(?, 256), 'buyer', 'active');
+
+-- Kiểm tra đăng ký mới nhất
+SELECT * FROM accounts 
+WHERE created_at >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+ORDER BY created_at DESC;
+\end{verbatim}
+
+\subsection{4.1.2 Đăng nhập}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.1.3 Đăng xuất}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.1.4 Hiển thị danh mục được tìm kiếm nhiều}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.1.5 Hiển thị sản phẩm bán chạy}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.1.6 Hiển thị sản phẩm xem nhiều nhất}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.1.7 Lọc sản phẩm đa tiêu chí}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\section{Chức năng cho Khách hàng (Người mua) - Section 4.2}
+
+\subsection{4.2.1 Xem tổng chi tiêu cá nhân}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.2.2 Hiển thị lịch sử giao dịch}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\section{Chức năng cho Người bán (Seller) - Section 4.3}
+
+\subsection{4.3.1 Hiển thị sản phẩm bán chạy của shop}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.2 Hiển thị sản phẩm có tỉ suất mua cao}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.3 Tỉ lệ hủy/ hoàn hàng}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.4 Gợi ý nhập kho}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.5 Dự báo cạn kho}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.6 Tăng trưởng của sản phẩm}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.7 Biểu đồ doanh thu theo ngày}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.8 Hiển thị danh mục bán chạy của shop}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.9 Hiển thị danh mục được xem nhiều}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.10 Hiển thị sản phẩm được xem nhiều}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.3.11 Hiển thị phân bố doanh thu của sub-category}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\section{Chức năng cho Admin (Quản trị viên) - Section 4.5}
+
+\subsection{4.5.1 Hiển thị người dùng có hành vi xấu}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}
+
+\subsection{4.5.2 Hiển thị doanh thu của toàn sàn}
+
+\subsubsection{Giải thích cơ chế}
+
+\subsubsection{Cài đặt vật lý}
+
+\subsubsection{Câu lệnh truy vấn}

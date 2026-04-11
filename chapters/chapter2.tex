@@ -1,60 +1,74 @@
-\begin{savequote}[75mm] 
-Chức năng là yêu cầu đầu tiên để một hệ thống hoạt động hiệu quả.
-\qauthor{Thiết kế hệ thống} 
+\begin{savequote}[75mm]
+Thiết kế tốt là nền tảng của triển khai thành công.
+\qauthor{Thiết kế hệ thống}
 \end{savequote}
 
-\chapter{Chức năng}
+\chapter{Thiết kế hệ thống}
 
-\newthought{Hệ thống quản lý cơ sở dữ liệu} e-commerce cần cung cấp các chức năng cơ bản và nâng cao để hỗ trợ hoạt động kinh doanh. Các chức năng này được thiết kế dựa trên yêu cầu nghiệp vụ và đặc điểm của thị trường e-commerce.
+\newthought{Thiết kế hệ thống} là quá trình chuyển đổi các yêu cầu phân tích thành mô hình dữ liệu cụ thể. Phần này trình bày chi tiết quá trình thiết kế từ xác định thực thể đến xây dựng lược đồ quan hệ.
 
-\section{Chức năng quản lý sản phẩm}
+\section{Xác định các thực thể}
 
-Quản lý thông tin sản phẩm bao gồm thêm, sửa, xóa và tìm kiếm sản phẩm.
+Các thực thể chính của hệ thống e-commerce bao gồm:
 
-\section{Chức năng quản lý đơn hàng}
+\begin{itemize}
+    \item \textbf{Account} - Tài khoản hệ thống
+    \item \textbf{User} - Thông tin người dùng
+    \item \textbf{Product} - Sản phẩm bán trên nền tảng
+    \item \textbf{Category} - Danh mục sản phẩm
+    \item \textbf{Order} - Đơn hàng
+    \item \textbf{Transaction} - Giao dịch thanh toán
+\end{itemize}
 
-Quản lý chu trình đơn hàng từ tạo đến hoàn thành.
+Mỗi thực thể có các thuộc tính riêng biệt xác định đặc trưng và thông tin cần lưu trữ. Các thuộc tính này được chọn lựa dựa trên yêu cầu chức năng của hệ thống.
 
-\section{Chức năng quản lý khách hàng}
+\section{Xác định các quan hệ}
 
-Quản lý thông tin khách hàng, lịch sử mua hàng và ưu tiên.
+Các mối quan hệ giữa các thực thể bao gồm:
 
-\section{Chức năng báo cáo và phân tích}
+\subsection{User và Account}
+\begin{itemize}
+    \item Mối quan hệ 1:1 - Một User đối ứng với một Account
+\end{itemize}
 
-Tạo báo cáo và phân tích dữ liệu bán hàng.
+\subsection{Các quan hệ khác}
 
-\section{This is section one}
-\blindtext
+(Các quan hệ khác như Product-Category, User-Order, Order-Product, Order-Transaction sẽ được chi tiết trong chương triển khai)
 
-\blinditemize
+\section{Biểu đồ thực thể - liên kết}
 
-\begin{table}[tb]
-  \centering
-  \caption{Network constants of the energy model.}
-  \label{tab:network_constants}
-  \small
-  % \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} l}
-  \begin{tabular}{lll}
-    \toprule
-    Parameter & Value & Unit \\
-    \midrule
-    $\epsilon_{elec}$ & $50$ &  $nJ/bit$ \\
-    $\epsilon_{fs}$ & $10$ & $pJ/bit/m^2$ \\
-    $\epsilon_{mp}$ & $0.0013$ & $pJ/bit/m^4$ \\
-    \bottomrule
-  \end{tabular}
-  % \end{tabular*}
-\end{table} 
+Biểu đồ Entity-Relationship (ERD) biểu diễn trực quan các thực thể, thuộc tính và mối quan hệ của hệ thống. Biểu đồ này giúp hiểu rõ cấu trúc dữ liệu trước khi triển khai.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{erd}
+    \caption{Biểu đồ thực thể - liên kết của hệ thống}
+    \label{fig:entity_relationship_diagram}
+\end{figure}
 
-\blindmathpaper
+\noindent\textbf{Ghi chú:} ERD chi tiết có thể được xem tại: \href{https://drive.google.com/}{Link ERD chi tiết}
 
-\blindtext@formula 
+\section{Lược đồ quan hệ và mô hình quan hệ}
 
-\section{This is section two}
-\blindtext
-\blindmathpaper
+Lược đồ quan hệ (Relational Schema) chuyển đổi mô hình ER thành các bảng trong CSDL quan hệ. Các bảng được thiết kế tuân theo các quy tắc chuẩn hóa (Normalization) để:
 
-\section{This is section three}
-\blindtext
-\blindmathpaper
+\begin{itemize}
+    \item Giảm dư thừa dữ liệu
+    \item Đảm bảo tính nhất quán
+    \item Tối ưu hóa hiệu suất truy vấn
+    \item Dễ bảo trì và nâng cấp
+\end{itemize}
+
+\subsection{Chuẩn hóa dữ liệu}
+
+Các bảng được chuẩn hóa từ dạng bình thường 1 (1NF) đến dạng bình thường 3 (3NF) để đảm bảo chất lượng lược đồ:
+
+\begin{itemize}
+    \item \textbf{1NF}: Loại bỏ các nhóm lặp lại
+    \item \textbf{2NF}: Loại bỏ các phụ thuộc hàm từng phần
+    \item \textbf{3NF}: Loại bỏ các phụ thuộc hàm bắc cầu
+\end{itemize}
+
+\subsection{Danh sách các bảng chính}
+
+Các bảng chính của hệ thống bao gồm: accounts, users, user\_addresses, user\_phone\_numbers, products, product\_types, product\_variants, categories, orders, order\_items, transactions. Chi tiết cấu trúc của các bảng này sẽ được trình bày trong chương 3 (Triển khai cài đặt cơ sở dữ liệu).

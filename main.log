@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.3.30)  31 MAR 2026 11:04
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.3.30)  11 APR 2026 16:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -687,8 +687,8 @@ Package: ragged2e 2023/06/22 v3.6 ragged2e Package
 \RaggedRightParindent=\skip93
 \JustifyingParindent=\skip94
 )
-Package hyperref Info: Option `linktocpage' set `true' on input line 55.
-Package hyperref Info: Option `colorlinks' set `true' on input line 55.
+Package hyperref Info: Option `colorlinks' set `true' on input line 56.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 56.
 
 (C:\Users\binhd\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
@@ -1315,11 +1315,11 @@ Package: blindtext 2012/01/06 V2.0 blindtext-Package
 \glo@main@file=\write5
 \openout5 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 15.
+Package glossaries Info: Writing glossary file main.glo on input line 17.
 \glo@notation@file=\write6
 \openout6 = `main.ntn'.
 
-Package glossaries Info: Writing glossary file main.ntn on input line 15.
+Package glossaries Info: Writing glossary file main.ntn on input line 17.
 
 (C:\Users\binhd\AppData\Local\Programs\MiKTeX\tex/latex/ccicons\ccicons.sty
 Package: ccicons 2017/10/30 v1.6 LaTeX support for Creative Commons icons
@@ -1345,27 +1345,27 @@ File: csquotes.cfg
 )) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-Package hyperref Info: Link coloring ON on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+Package hyperref Info: Link coloring ON on input line 19.
  (main.out) (main.out)
 \@outlinefile=\write7
 \openout7 = `main.out'.
@@ -1472,7 +1472,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [2
 
 
-]) (frontmatter/thanks.tex) (frontmatter/abstract.tex
+]) (frontmatter/abstract.tex
 
 Package xcolor Warning: Incompatible color definition on input line 6.
 
@@ -1486,15 +1486,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [1]) (main.toc [2
 
 
-])
+] [3] [4] [5] [6])
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
- [3] (main.lof)
+ [7] (main.lof)
 \tf@lof=\write10
 \openout10 = `main.lof'.
 
- [4
+ [8
 
 
 ] (main.lot)
@@ -1504,57 +1504,74 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 No file main.gls.
 No file main.not.
-[5
+(frontmatter/opening.tex [9
 
 
-] (chapters/chapter1.tex
+]) [10] (chapters/chapter1.tex
 Chapter 1.
 Package newfloat Info: Setting Plan B file extension to `lof'... on input line 
 7.
 [1
 
 
-]
-File: figures/fig1.pdf Graphic file (type pdf)
-<use figures/fig1.pdf>
-File: figures/fullpage.pdf Graphic file (type pdf)
-<use figures/fullpage.pdf>
-
-
-LaTeX Warning: Float too large for page by 22.1267pt on input line 34.
-
-[2] [3] [4
-
-] [5] [6] [7]) (chapters/chapter2.tex [8]
+] [2]) (chapters/chapter2.tex [3]
 Chapter 2.
-[9
+[4
 
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <11.86258> on input line 37
-.
- [10] [11] [12] [13] [14] [15]) (chapters/chapter3.tex [16] [17]
+
+chapters/chapter2.tex:44: LaTeX Error: File `erd' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 ...\includegraphics[width=0.9\textwidth]{erd}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.PDF,.ai,.AI,.png,.PNG,.jpg,.JPG,.jpeg,.JPEG,.jp2,.JP2,.jpf,.JPF,.bmp,.BMP
+,.ps,.PS,.eps,.EPS,.mps,.MPS
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[5]) (chapters/chapter3.tex
+Overfull \hbox (63.18134pt too wide) in paragraph at lines 74--5
+[][]\TU/lmr/m/n/13 Các bảng chính của hệ thống bao gồm: accounts, users, user_a
+ddresses, user_phone_numbers,
+ []
+
+
+Overfull \hbox (2.0492pt too wide) in paragraph at lines 74--5
+\TU/lmr/m/n/13 products, product_types, product_variants, categories, orders, o
+rder_items, trans-
+ []
+
+[6]
 Chapter 3.
-[18
+[7
 
 
-] [19]) [20] (main.bbl) [21
+] [8] [9] [10] [11] [12]) (chapters/chapter4_features.tex [13]
+Chapter 4.
+[14
+
+
+] [15] [16] [17] [18] [19] [20]) [21] (main.bbl) [22
 
 
 
-] (chapters/appendixA.tex
+]
+(chapters/appendixA.tex
 Appendix A.
-) (chapters/appendixB.tex [22
+) (chapters/appendixB.tex [23
 
 
 
 
 ]
 Appendix B.
-) [23
-
-
-]
+)
 (C:\Users\binhd\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.d
 ef
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
@@ -1562,7 +1579,10 @@ File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 (C:\Users\binhd\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-utf32be.
 def
 File: se-utf32be.def 2019/11/29 v1.12 stringenc: UTF-32BE
-) [24] (main.aux)
+) [24
+
+
+] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -1572,17 +1592,8 @@ L3 programming layer <2025-12-24>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-
-LaTeX Warning: Temporary extra page added at the end. Rerun to get it removed.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: A2D149BDB97C0B4CBD9E0BCEB9C24EDB;5270
-(rerunfilecheck)             After:  34F8BCC576C93D6E40CB4E627C274FF4;5580.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 1C5E1D003B9A531A5EE3C2BC2020358F;38801.
  )
 (\end occurred inside a group at level 2)
 
@@ -1590,12 +1601,12 @@ Package rerunfilecheck Info: Checksums for `main.out':
 ### semi simple group (level 1) entered at line 6 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 39258 strings out of 402987
- 797439 string characters out of 5448524
- 1369314 words of memory out of 5000000
- 67350 multiletter control sequences out of 15000+600000
- 635724 words of font info for 93 fonts, out of 8000000 for 9000
+ 39317 strings out of 402987
+ 798239 string characters out of 5448524
+ 1407695 words of memory out of 5000000
+ 67415 multiletter control sequences out of 15000+600000
+ 632896 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,32n,131p,2541b,33241s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,32n,131p,2541b,33907s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (31 pages).
+Output written on main.pdf (36 pages).

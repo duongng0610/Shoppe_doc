@@ -1,64 +1,222 @@
-\begin{savequote}[75mm] 
+\begin{savequote}[75mm]
 Triển khai tốt là chìa khóa để chuyển từ thiết kế sang thực tế.
-\qauthor{Quản lý dự án} 
+\qauthor{Quản lý dự án}
 \end{savequote}
 
-\chapter{Triển khai dự án}
+\chapter{Triển khai cài đặt cơ sở dữ liệu}
 
-\newthought{Triển khai hệ thống cơ sở dữ liệu} e-commerce yêu cầu một kế hoạch chi tiết từ thiết kế đến triển khai. Phần này trình bày các bước triển khai và các công nghệ được sử dụng.
+\newthought{Triển khai cài đặt cơ sở dữ liệu} là giai đoạn chuyển đổi lược đồ thiết kế thành các bảng, index, view và trigger thực tế. Phần này trình bày chi tiết cấu trúc từng bảng, các ràng buộc, index tối ưu hóa, view để lấy dữ liệu và trigger tự động.
 
-\section{Mô hình ER của hệ thống}
+\section{Account}
 
-Mô hình ER (Entity-Relationship) biểu diễn các thực thể chính và mối quan hệ giữa chúng trong hệ thống.
+\subsection{Cấu trúc bảng}
 
-\section{Mô hình quan hệ}
+Bảng \texttt{accounts} lưu trữ thông tin tài khoản hệ thống.
 
-Mô hình quan hệ chuyển đổi mô hình ER sang các bảng cơ sở dữ liệu.
+\begin{verbatim}
+CREATE TABLE accounts (
+    account_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('buyer', 'seller', 'admin') NOT NULL,
+    status ENUM('active', 'suspended', 'deleted') DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+        ON UPDATE CURRENT_TIMESTAMP
+);
+\end{verbatim}
 
-\section{Đặc tả dữ liệu}
+\subsection{Index}
 
-Định nghĩa chi tiết các kiểu dữ liệu, độ dài, và ràng buộc cho mỗi cột.
+\begin{verbatim}
+CREATE INDEX idx_accounts_email ON accounts(email);
+CREATE INDEX idx_accounts_role ON accounts(role);
+CREATE INDEX idx_accounts_status ON accounts(status);
+\end{verbatim}
 
-\section{Mối quan hệ giữa các bảng}
+\subsection{View}
 
-Xác định khóa ngoại (Foreign Key) và thiết lập mối quan hệ giữa các bảng.
+\begin{verbatim}
+CREATE VIEW vw_active_accounts AS
+SELECT account_id, email, role, created_at
+FROM accounts
+WHERE status = 'active';
+\end{verbatim}
 
-\section{Danh sách các ràng buộc dữ liệu}
+\subsection{Trigger}
 
-Liệt kê tất cả các ràng buộc như UNIQUE, NOT NULL, CHECK.
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_account_audit
+AFTER UPDATE ON accounts
+FOR EACH ROW
+BEGIN
+    INSERT INTO account_audit_log 
+    (account_id, old_status, new_status, changed_at)
+    VALUES (NEW.account_id, OLD.status, NEW.status, NOW());
+END$$
+DELIMITER ;
+\end{verbatim}
 
-\section{Cải đặt vật lý}
+\section{User}
 
-Tối ưu hóa cơ sở dữ liệu ở mức vật lý bao gồm chỉ mục và phân vùng.
+\subsection{3.2.1 Table users}
 
-\section{Các ràng buộc sử dụng các câu lệnh ALTER TABLE}
+Bảng \texttt{users} lưu trữ thông tin chi tiết của người dùng.
 
-Thêm và sửa đổi ràng buộc sau khi tạo bảng.
+\subsubsection{Cấu trúc bảng}
 
-\section{Viết câu truy vấn}
+\begin{verbatim}
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    account_id INT NOT NULL UNIQUE,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    date_of_birth DATE,
+    gender ENUM('male', 'female', 'other'),
+    avatar_url VARCHAR(500),
+    bio TEXT,
+    total_spending DECIMAL(15, 2) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+        ON DELETE CASCADE
+);
+\end{verbatim}
 
-Các câu lệnh SQL SELECT, INSERT, UPDATE, DELETE để xử lý dữ liệu.
+\subsubsection{Index}
 
-\section{Hàm}
+\begin{verbatim}
+CREATE INDEX idx_users_account_id ON users(account_id);
+CREATE INDEX idx_users_full_name ON users(last_name, first_name);
+CREATE INDEX idx_users_total_spending ON users(total_spending DESC);
+\end{verbatim}
 
-Định nghĩa các hàm người dùng để xử lý logic dữ liệu phức tạp.
+\subsubsection{View}
 
-\section{Trigger}
+\begin{verbatim}
+CREATE VIEW vw_user_profile AS
+SELECT 
+    u.user_id, u.account_id, 
+    CONCAT(u.first_name, ' ', u.last_name) as full_name,
+    a.email, u.total_spending, u.created_at
+FROM users u
+JOIN accounts a ON u.account_id = a.account_id;
+\end{verbatim}
 
-Tạo các trigger để tự động thực hiện các hành động khi có thay đổi dữ liệu.
+\subsubsection{Trigger}
 
-\section{Procedure}
+Không có trigger riêng cho bảng users.
 
-Xây dựng các procedure lưu trữ cho các quy trình kinh doanh.
+\subsection{3.2.2 Table addresses}
 
-\section{View}
+Bảng \texttt{user\_addresses} lưu trữ các địa chỉ của người dùng.
 
-Tạo các view để đơn giản hóa truy vấn phức tạp.
+\subsubsection{Cấu trúc bảng}
 
-\section{Index}
+\subsubsection{Index}
 
-Thiết kế chỉ mục để tối ưu hóa hiệu suất truy vấn.
+\subsubsection{View}
+
+\subsubsection{Trigger}
+
+\subsection{3.2.3 Table phone\_numbers}
+
+Bảng \texttt{user\_phone\_numbers} lưu trữ các số điện thoại của người dùng.
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsubsection{View}
+
+\subsubsection{Trigger}
+
+\section{Product}
+
+\subsection{3.3.1 Table product}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.2 Table type}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.3 Table type\_values}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.4 Table variants}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.5 Table variant\_values}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.6 Table product\_extra\_images}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.7 Table product\_reviews}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsection{3.3.8 Table product\_review\_images}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\section{Category}
+
+Bảng \texttt{categories} lưu trữ các danh mục sản phẩm.
+
+\subsection{Cấu trúc bảng}
+
+\subsection{Index}
+
+\subsection{View}
+
+\section{Order}
+
+\subsection{3.5.1 Table orders}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsubsection{View}
+
+\subsubsection{Trigger}
+
+\subsection{3.5.2 Table order\_tracking\_locations}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
 
 \section{Transaction}
 
-Quản lý giao dịch để đảm bảo tính nhất quán dữ liệu.
+Bảng \texttt{transactions} lưu trữ thông tin giao dịch thanh toán.
+
+\subsection{Cấu trúc bảng}
+
+\subsection{Index}
+
+\subsection{View}
+
+\subsection{Trigger}
