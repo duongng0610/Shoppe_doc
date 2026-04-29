@@ -204,6 +204,166 @@ Bảng \texttt{categories} lưu trữ các danh mục sản phẩm.
 
 \subsubsection{Index}
 
+\section{Notification}
+
+Bảng \texttt{notifications} lưu trữ các thông báo gửi đến người dùng trong hệ thống.
+
+\subsection{Cấu trúc bảng}
+
+\subsection{Index}
+
+\subsection{View}
+
+\begin{verbatim}
+CREATE OR REPLACE VIEW user_notifications_view AS
+SELECT
+    id,
+    user_id,
+    title,
+    type,
+    content,
+    image,
+    target_id,
+    is_read,
+    read_at,
+    created_at
+FROM notifications
+WHERE deleted = 0
+ORDER BY created_at DESC;
+\end{verbatim}
+
+\begin{verbatim}
+CREATE OR REPLACE VIEW notification_unread_badge_view AS
+SELECT
+    user_id,
+    COUNT(id) AS unread_count
+FROM notifications
+WHERE deleted = 0
+  AND is_read = 0
+GROUP BY user_id;
+\end{verbatim}
+
+\subsection{Trigger}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_notifications_before_insert
+BEFORE INSERT ON notifications
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+    SET NEW.is_read = 0;
+    SET NEW.read_at  = NULL;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_notifications_before_update
+BEFORE UPDATE ON notifications
+FOR EACH ROW
+BEGIN
+    IF OLD.is_read = 0 AND NEW.is_read = 1 THEN
+        SET NEW.read_at = NOW(6);
+    END IF;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+\section{Shopping Cart}
+
+Bảng \texttt{shopping\_carts} và \texttt{shopping\_cart\_items} lưu trữ thông tin giỏ hàng của người dùng.
+
+\subsection{Table shopping\_carts}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsubsection{View}
+
+\begin{verbatim}
+CREATE OR REPLACE VIEW cart_details_view AS
+SELECT
+    sci.id                          AS item_id,
+    sc.client_id,
+    sci.variant_id,
+    sci.quantity,
+    sci.price_each,
+    (sci.quantity * sci.price_each) AS item_total_price,
+    v.thumbnail,
+    p.name                          AS product_name
+FROM       shopping_cart_items sci
+JOIN       shopping_carts sc ON sci.shopping_cart_id = sc.id
+JOIN       variants        v  ON sci.variant_id       = v.id
+JOIN       products        p  ON v.product_id         = p.id
+WHERE      sci.deleted = 0
+  AND      sc.deleted  = 0;
+\end{verbatim}
+
+\begin{verbatim}
+CREATE OR REPLACE VIEW cart_header_summary_view AS
+SELECT
+    client_id,
+    id          AS shopping_cart_id,
+    total_quantity,
+    total_price AS total_cart_value
+FROM shopping_carts
+WHERE deleted = 0;
+\end{verbatim}
+
+\subsubsection{Trigger}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_shopping_carts_before_insert
+BEFORE INSERT ON shopping_carts
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+    SET NEW.total_price    = 0;
+    SET NEW.total_quantity = 0;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+\subsection{Table shopping\_cart\_items}
+
+\subsubsection{Cấu trúc bảng}
+
+\subsubsection{Index}
+
+\subsubsection{View}
+
+\subsubsection{Trigger}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_shopping_cart_items_before_insert
+BEFORE INSERT ON shopping_cart_items
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+END$$
+DELIMITER ;
+\end{verbatim}
+
 \section{Transaction}
 
 Bảng \texttt{transactions} lưu trữ thông tin giao dịch thanh toán.
