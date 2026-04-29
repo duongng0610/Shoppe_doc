@@ -215,3 +215,86 @@ Bảng \texttt{transactions} lưu trữ thông tin giao dịch thanh toán.
 \subsection{View}
 
 \subsection{Trigger}
+
+\section{Notification}
+
+\subsection{Trigger}
+
+\noindent\textbf{trg\_notifications\_before\_insert} --- kiểm tra và set id, set created\_at, khởi tạo is\_read = 0 và read\_at = NULL.
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_notifications_before_insert
+BEFORE INSERT ON notifications
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+    SET NEW.is_read = 0;
+    SET NEW.read_at  = NULL;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+\noindent\textbf{trg\_notifications\_before\_update} --- cập nhật read\_at khi is\_read chuyển từ 0 sang 1.
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_notifications_before_update
+BEFORE UPDATE ON notifications
+FOR EACH ROW
+BEGIN
+    IF OLD.is_read = 0 AND NEW.is_read = 1 THEN
+        SET NEW.read_at = NOW(6);
+    END IF;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+
+\section{Shopping Cart}
+
+\subsection{Table shopping\_carts}
+
+\subsubsection{Trigger}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_shopping_carts_before_insert
+BEFORE INSERT ON shopping_carts
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+    SET NEW.total_quantity = 0;
+END$$
+DELIMITER ;
+\end{verbatim}
+
+\subsection{Table shopping\_cart\_items}
+
+\subsubsection{Trigger}
+
+\begin{verbatim}
+DELIMITER $$
+CREATE TRIGGER trg_shopping_cart_items_before_insert
+BEFORE INSERT ON shopping_cart_items
+FOR EACH ROW
+BEGIN
+    IF NEW.id IS NULL OR NEW.id = '' THEN
+        SET NEW.id = UUID();
+    END IF;
+    IF NEW.created_at IS NULL THEN
+        SET NEW.created_at = NOW(6);
+    END IF;
+END$$
+DELIMITER ;
+\end{verbatim}
