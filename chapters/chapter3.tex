@@ -246,7 +246,43 @@ CREATE TABLE notifications (
 CREATE INDEX idx_user ON notifications(user_id);
 \end{verbatim}
 
+\subsection{View}
+
+\noindent\textbf{user\_notifications\_view} --- view hiển thị các thông báo chưa đọc.
+
+\begin{verbatim}
+CREATE VIEW user_notifications_view AS
+SELECT
+    id,
+    user_id,
+    title,
+    type,
+    content,
+    image,
+    target_id,
+    is_read,
+    read_at,
+    created_at
+FROM notifications
+WHERE deleted = 0
+ORDER BY created_at DESC;
+\end{verbatim}
+
+\noindent\textbf{notification\_unread\_badge\_view} --- đếm số thông báo chưa đọc theo từng người dùng.
+
+\begin{verbatim}
+CREATE VIEW notification_unread_badge_view AS
+SELECT
+    user_id,
+    COUNT(id) AS unread_count
+FROM notifications
+WHERE deleted = 0
+  AND is_read = 0
+GROUP BY user_id;
+\end{verbatim}
+
 \subsection{Trigger}
+
 
 \noindent\textbf{trg\_notifications\_before\_insert} --- kiểm tra và set id, set created\_at, khởi tạo is\_read = 0 và read\_at = NULL.
 
@@ -372,4 +408,27 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+\end{verbatim}
+
+\subsection{View}
+
+\noindent\textbf{cart\_details\_view} --- View hiển thị chi tiết sản phẩm có trong giỏ hàng.
+
+\begin{verbatim}
+CREATE VIEW cart_details_view AS
+SELECT
+    sci.id                          AS item_id,
+    sc.client_id,
+    sci.variant_id,
+    sci.quantity,
+    sci.price_each,
+    (sci.quantity * sci.price_each) AS item_total_price,
+    v.thumbnail,
+    p.name                          AS product_name
+FROM       shopping_cart_items sci
+JOIN       shopping_carts sc ON sci.shopping_cart_id = sc.id
+JOIN       variants        v  ON sci.variant_id       = v.id
+JOIN       products        p  ON v.product_id         = p.id
+WHERE      sci.deleted = 0
+  AND      sc.deleted  = 0;
 \end{verbatim}
