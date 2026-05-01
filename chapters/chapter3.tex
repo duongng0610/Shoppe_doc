@@ -845,31 +845,179 @@ DELIMITER ;
 
 Mục đích: Đếm số sản phẩm trong một category (chưa bị xóa mềm).
 
-\section{Order}
+\section{Order} 
 
 \subsection{Table orders}
 
 \subsubsection{Cấu trúc bảng}
 
+Bảng \texttt{orders} lưu trữ thông tin các đơn hàng.
+
+\begin{verbatim}
+CREATE TABLE `orders` (
+    `id` varchar(255) NOT NULL,
+    `created_at` datetime(6) NOT NULL,
+    `deleted` tinyint(1) DEFAULT '0',
+    `shipping_district` varchar(255) DEFAULT NULL,
+    `product_name` varchar(255) NOT NULL,
+    `shipping_province` varchar(255) DEFAULT NULL,
+    `quantity` int NOT NULL,
+    `shipping_phone_number` varchar(255) NOT NULL,
+    `status` enum('PENDING','ACCEPTED','CANCELLED_BY_CLIENT','CANCELLED_BY_SHIPPER','CANCELLED_BY_SELLER','SHIPPING','ARRIVED','PAID','RETURN_REQUEST_BY_CLIENT','RETURN_REQUEST_BY_SHIPPER','RETURNED','BOMB') NOT NULL,
+    `thumbnail` varchar(255) NOT NULL,
+    `total_price` decimal(15,2) NOT NULL,
+    `updated_at` datetime(6) DEFAULT NULL,
+    `variant_name` varchar(255) DEFAULT NULL,
+    `shipping_ward` varchar(255) DEFAULT NULL,
+    `client_id` varchar(255) NOT NULL,
+    `seller_id` varchar(255) NOT NULL,
+    `variant_id` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_orders_status` (`status`),
+    KEY `FKojjigrbyd7qrcwrxvr7e9bdr2` (`client_id`),
+    KEY `FKsb9w6305d2be0rwbtifi7wymp` (`seller_id`),
+    KEY `FKia12q7m9rrpxq1nku1ea4o9lr` (`variant_id`),
+    CONSTRAINT `FKia12q7m9rrpxq1nku1ea4o9lr` FOREIGN KEY (`variant_id`) REFERENCES `variants` (`id`),
+    CONSTRAINT `FKojjigrbyd7qrcwrxvr7e9bdr2` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`),
+    CONSTRAINT `FKsb9w6305d2be0rwbtifi7wymp` FOREIGN KEY (`seller_id`) REFERENCES `users` (`id`)
+);
+
+\end{verbatim}
+
 \subsubsection{Index}
+
+\begin{verbatim}
+    CREATE INDEX idx_fk_client_id ON orders(client_id);
+    CREATE INDEX idx_fk_seller_id ON orders(seller_id);
+    CREATE INDEX idx_fk_variant_id ON orders(variant_id);
+    CREATE INDEX idx_client_id_status ON orders(client_id, status);
+\end{verbatim}
 
 \subsubsection{View}
 
+\begin{verbatim}
+    CREATE VIEW order_client_seller_view AS
+	SELECT id, created_at, thumbnail,product_name, variant_name, quantity, total_price, status, updated_at, shipping_ward, shipping_district, shipping_province, shipping_phone_number, client_id, seller_id
+	FROM orders
+    WHERE deleted = false;
+\end{verbatim}
+
 \subsubsection{Trigger}
+\begin{verbatim}
+    CREATE TRIGGER trg_orders_updated_at
+    BEFORE UPDATE ON orders
+    FOR EACH ROW
+    SET NEW.updated_at = NOW();
+
+    CREATE TRIGGER trg_orders_soft_delete
+    BEFORE DELETE ON orders
+    FOR EACH ROW
+    BEGIN
+    SET OLD.deleted = true;
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Use soft delete instead';
+    END;
+
+    CREATE TRIGGER trg_orders_order_tracking_location_insert
+    AFTER UPDATE ON orders
+    FOR EACH ROW
+    BEGIN 
+        IF OLD.status = 'PENDING' AND NEW.status = 'ACCEPTED' THEN
+            INSERT INTO order_tracking_locations(id, address, arrived_at,
+            create_at, deleted, remaining_distance, updated_at, order_id)
+            VALUES (UUID(), CONCAT(shipping_ward, ',',shipping_district, 
+            ',' ,shipping_province), NOW(), NOW(), false, 0.000, NOW(), id)
+        END IF;
+
+    CREATE TRIGGER trg_orders_update_log 
+    AFTER UPDATE ON orders 
+    FOR EACH ROW 
+    BEGIN 
+        INSERT INTO orders_update_log(id, order_id, updated_at) 
+        VALUES (UUID(), id, NOW());
+    END;
+
+    CREATE TRIGGER trg_orders_delete_log
+    AFTER UPDATE ON orders
+    FOR EACH ROW
+    BEGIN 
+        IF OLD.deleted != NEW.deleted THEN 
+            INSERT INTO orders_delete_log(id, order_id,
+            updated_at) VALUES (UUID(), id, NOW())
+        END IF;
+    END;
+\end{verbatim}
 
 \subsubsection{Procedure}
-
+\begin{verbatim}
+    CREATE PROCEDURE get_orders_by_client(IN p_client_id VARCHAR(255))
+    BEGIN
+    SELECT *
+    FROM order_tracking_detail_client_view
+    WHERE client_id = p_client_id;
+    END;
+\end{verbatim}
 \subsubsection{Function}
 
 \subsection{Table order\_tracking\_locations}
 
 \subsubsection{Cấu trúc bảng}
 
+Bảng \texttt{order\_tracking\_locations} lưu thông tin theo dõi vị trí đơn hàng.
+
+\begin{verbatim}
+CREATE TABLE `order_tracking_locations` (
+    `id` varchar(255) NOT NULL,
+    `address` varchar(255) NOT NULL,
+    `arrived_at` datetime(6) NOT NULL,
+    `created_at` datetime(6) NOT NULL,
+    `deleted` tinyint(1) DEFAULT '0',
+    `remaining_distance` float NOT NULL,
+    `updated_at` datetime(6) DEFAULT NULL,
+    `order_id` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_order_id` (`order_id`),
+    CONSTRAINT `FK3wof50lvhiqf1kwe3427our99` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+);
+\end{verbatim}
+
 \subsubsection{Index}
+
+\begin{verbatim}
+    CREATE INDEX idx_fk_order_id ON order_tracking_locations(order_id);
+\end{verbatim}
 
 \subsubsection{View}
 
+\begin{verbatim}
+	CREATE VIEW order_tracking_detail_view AS
+	SELECT o.id, o.created_at, thumbnail ,product_name, variant_name, quantity, total_price, status, o.updated_at, shipping_ward, shipping_district, shipping_province, shipping_phone_number, client_id, seller_id, otl.id, address, arrived_at, remaining_distance, otl.updated_at
+	FROM orders o 
+    JOIN order_tracking_locations otl on o.id = otl.order_id
+    WHERE o.deleted = false and otl.deleted = false ;
+\end{verbatim}
+
 \subsubsection{Trigger}
+
+\begin{verbatim}
+    CREATE TRIGGER trg_order_tracking_locations_update_log 
+    AFTER UPDATE ON order_tracking_locations 
+    FOR EACH ROW 
+    BEGIN 
+        INSERT INTO order_tracking_locations_update_log(id, order_id, updated_at) 
+        VALUES (UUID(), id, NOW());
+    END;
+
+    CREATE TRIGGER trg_order_tracking_locations_delete_log
+    AFTER UPDATE ON orders
+    FOR EACH ROW
+    BEGIN 
+        IF OLD.deleted != NEW.deleted THEN 
+            INSERT INTO order_tracking_locations_delete_log(id, order_id,
+            updated_at) VALUES (UUID(), id, NOW())
+        END IF;
+    END;
+\end{verbatim}
 
 \subsubsection{Procedure}
 
