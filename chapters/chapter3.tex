@@ -953,14 +953,77 @@ CREATE TABLE `orders` (
 
 \subsubsection{Procedure}
 \begin{verbatim}
-    CREATE PROCEDURE get_orders_by_client(IN p_client_id VARCHAR(255))
+    CREATE PROCEDURE get_orders_by_client(
+        IN p_client_id VARCHAR(255)
+    )
     BEGIN
-    SELECT *
-    FROM order_tracking_detail_client_view
-    WHERE client_id = p_client_id;
-    END;
+        SELECT *
+        FROM order_client_seller_view
+        WHERE client_id = p_client_id;
+    END //
+
+    CREATE PROCEDURE get_orders_by_client(
+        IN p_seller_id VARCHAR(255)
+    )
+    BEGIN
+        SELECT *
+        FROM order_client_seller_view
+        WHERE seller_id = p_seller_id;
+    END //
+
+    CREATE PROCEDURE get_orders_by_client_status(
+        IN p_client_id VARCHAR(255),
+        IN p_status VARCHAR(255)
+    )
+    BEGIN
+        SELECT *
+        FROM order_client_seller_view
+        WHERE client_id = p_client_id AND
+                status = p_status;
+    END //
+
+    CREATE PROCEDURE get_orders_by_seller_status(
+        IN p_seller_id VARCHAR(255),
+        IN p_status VARCHAR(255)
+    )
+    BEGIN
+        SELECT *
+        FROM order_client_seller_view
+        WHERE seller_id = p_seller_id AND
+                status = p_status;
+    END //
 \end{verbatim}
 \subsubsection{Function}
+
+\begin{verbatim}
+    CREATE FUNCTION count_orders_by_client(
+        p_client_id VARCHAR(255)
+    )
+    RETURNS INT
+    DETERMINISTIC
+    BEGIN
+        DECLARE result INT;
+        SELECT COUNT(*) INTO result
+        FROM order_client_seller_view
+        WHERE client_id = p_client_id;
+        RETURN results;
+    END //
+
+    CREATE FUNCTION count_orders_by_seller(
+        p_seller_id VARCHAR(255)
+    )
+    RETURNS INT
+    DETERMINISTIC
+    BEGIN
+        DECLARE result INT;
+        SELECT COUNT(*) INTO result
+        FROM order_client_seller_view
+        WHERE seller_id = p_seller_id;
+        RETURN results;
+    END //
+
+
+\end{verbatim}
 
 \subsection{Table order\_tracking\_locations}
 
@@ -1307,9 +1370,10 @@ WHERE      sci.deleted = 0
  \subsubsection{View}
 
  \begin{verbatim}
-    CREATE VIEW order_refund_request_user_view AS 
+    CREATE VIEW order_refund_request_client_seller_view AS 
 	SELECT id, created_at, reason, refund_amount, refund_type, 
-    resolved_at, status, updated_at,order_id, requester_id, seller_id 
+    resolved_at, status, updated_at,order_id,
+    requester_id, seller_id 
 	FROM order_refund_requests 
 	WHERE deleted = false;
  \end{verbatim}
@@ -1368,6 +1432,44 @@ WHERE      sci.deleted = 0
         SELECT * from order_refund_request 
         WHERE seller = p_seller_id AND deleted = false;
     END //
+
+    CREATE PROCEDURE GetRefundRequestByResolvedAt(
+        IN p_below_date date,
+        IN p_above_date date
+    )
+    BEGIN 
+        SELECT * from order_refund_request
+        WHERE resolved_at >= p_below_date AND
+         resolved_at <= p_above_date;
+    END //
  \end{verbatim}
 
  \subsubsection{Function}
+
+ \begin{verbatim}
+    CREATE FUNCTION count_refund_request_by_seller(
+        p_seller_id VARCHAR(255)
+    )
+    RETURNS INT
+    DETERMINISTIC
+    BEGIN
+        DECLARE result INT;
+        SELECT COUNT(*) INTO result
+        FROM order_refund_request_client_seller_view
+        WHERE seller_id = p_seller_id;
+        RETURN results;
+    END //
+
+    CREATE FUNCTION count_refund_request_by_client(
+        p_client_id VARCHAR(255)
+    )
+    RETURNS INT
+    DETERMINISTIC
+    BEGIN
+        DECLARE result INT;
+        SELECT COUNT(*) INTO result
+        FROM order_refund_request_client_seller_view
+        WHERE client_id = p_client_id;
+        RETURN results;
+    END //
+ \end{verbatim}
