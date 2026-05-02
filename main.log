@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.1)  1 MAY 2026 23:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.5.1)  2 MAY 2026 10:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1960,52 +1960,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--154
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 155--155
- \TU/lmr/m/sc/13 Tr  
+ \TU/lmr/m/n/13 Re  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 156--156
- \TU/lmr/m/n/13 Ch  
+ \TU/lmr/m/n/13 Ta  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 157--157
- \TU/lmr/m/n/13 Đă  
+ \TU/lmr/m/n/13 Cấ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 158--158
- \TU/lmr/m/n/13 Gi  
+ \TU/lmr/m/n/13 In  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 159--159
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/n/13 Vi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 160--160
- \TU/lmr/m/n/13 Câ  
+ \TU/lmr/m/n/13 Tr  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 161--161
- \TU/lmr/m/n/13 Đă  
+ \TU/lmr/m/n/13 Pr  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 162--162
- \TU/lmr/m/n/13 Gi  
+ \TU/lmr/m/n/13 Fu  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 163--163
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/sc/13 Tr  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 164--164
- \TU/lmr/m/n/13 Câ  
+ \TU/lmr/m/n/13 Ch  
  []
 
 [6]
@@ -2030,7 +2030,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--168
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 169--169
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Đă  
  []
 
 
@@ -2050,7 +2050,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--172
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 173--173
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Đă  
  []
 
 
@@ -2090,7 +2090,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--180
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 181--181
- \TU/lmr/m/n/13 Lọ  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
@@ -2110,97 +2110,97 @@ Underfull \hbox (badness 10000) in paragraph at lines 184--184
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 185--185
- \TU/lmr/m/n/13 Ch  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 186--186
- \TU/lmr/m/n/13 Xe  
+ \TU/lmr/m/n/13 Gi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 187--187
- \TU/lmr/m/n/13 Gi  
+ \TU/lmr/m/n/13 Cà  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 188--188
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/n/13 Câ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 189--189
- \TU/lmr/m/n/13 Câ  
+ \TU/lmr/m/n/13 Lọ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 190--190
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Gi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 191--191
- \TU/lmr/m/n/13 Gi  
+ \TU/lmr/m/n/13 Cà  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 192--192
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/n/13 Câ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 193--193
- \TU/lmr/m/n/13 Câ  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
  \TU/lmr/m/n/13 Ch  
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+ \TU/lmr/m/n/13 Xe  
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 195--195
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Gi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 196--196
- \TU/lmr/m/n/13 Gi  
+ \TU/lmr/m/n/13 Cà  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 197--197
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/n/13 Câ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 198--198
- \TU/lmr/m/n/13 Câ  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 199--199
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Gi  
  []
 
 [7]
 Underfull \hbox (badness 10000) in paragraph at lines 200--200
- \TU/lmr/m/n/13 Gi  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
  \TU/lmr/m/n/13 Cà  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
  \TU/lmr/m/n/13 Câ  
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 202--202
+ \TU/lmr/m/n/13 Ch  
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 203--203
- \TU/lmr/m/n/13 Tỉ  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
@@ -2220,7 +2220,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 206--206
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 207--207
- \TU/lmr/m/n/13 Gợ  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
@@ -2240,7 +2240,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 210--210
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 211--211
- \TU/lmr/m/n/13 Dự  
+ \TU/lmr/m/n/13 Tỉ  
  []
 
 
@@ -2260,7 +2260,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--214
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 215--215
- \TU/lmr/m/n/13 Tă  
+ \TU/lmr/m/n/13 Gợ  
  []
 
 
@@ -2280,7 +2280,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 218--218
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 219--219
- \TU/lmr/m/n/13 Bi  
+ \TU/lmr/m/n/13 Dự  
  []
 
 
@@ -2300,7 +2300,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 222--222
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 223--223
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Tă  
  []
 
 
@@ -2320,7 +2320,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 226--226
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 227--227
- \TU/lmr/m/n/13 Hi  
+ \TU/lmr/m/n/13 Bi  
  []
 
 
@@ -2380,71 +2380,111 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--238
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 239--239
- \TU/lmr/m/n/13 Ch  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--240
  \TU/lmr/m/n/13 Hi  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 241--241
+Underfull \hbox (badness 10000) in paragraph at lines 240--240
  \TU/lmr/m/n/13 Gi  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
+ \TU/lmr/m/n/13 Cà  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 242--242
- \TU/lmr/m/n/13 Cà  
+ \TU/lmr/m/n/13 Câ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 243--243
- \TU/lmr/m/n/13 Câ  
+ \TU/lmr/m/n/13 Hi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 244--244
- \TU/lmr/m/n/13 4.  
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 245--245
  \TU/lmr/m/n/13 Gi  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--246
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
  \TU/lmr/m/n/13 Cà  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 247--247
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
  \TU/lmr/m/n/13 Câ  
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+ \TU/lmr/m/n/13 Ch  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+ \TU/lmr/m/n/13 Hi  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
+ \TU/lmr/m/n/13 Gi  
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 250--250
- \TU/lmr/m/sc/13 Co  
+ \TU/lmr/m/n/13 Cà  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 251--251
- \TU/lmr/m/n/13 Đi  
+ \TU/lmr/m/n/13 Câ  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 252--252
- \TU/lmr/m/n/13 Đi  
+ \TU/lmr/m/n/13 4.  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 253--253
- \TU/lmr/m/n/13 Kế  
+ \TU/lmr/m/n/13 Gi  
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 254--254
+ \TU/lmr/m/n/13 Cà  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--255
+ \TU/lmr/m/n/13 Câ  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
+ \TU/lmr/m/sc/13 Co  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--259
+ \TU/lmr/m/n/13 Đi  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--260
+ \TU/lmr/m/n/13 Đi  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
+ \TU/lmr/m/n/13 Kế  
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--262
  \TU/lmr/m/sc/13 Kh  
  []
 
@@ -2546,70 +2586,105 @@ Overfull \hbox (890.45111pt too wide) in paragraph at lines 900--900
  []
 
 [30]
-Overfull \hbox (33.49103pt too wide) in paragraph at lines 926--926
+Overfull \hbox (33.49103pt too wide) in paragraph at lines 928--928
 [][][]            \TU/lmtt/m/n/13 INSERT INTO order_tracking_locations(id, address, arrived_at,[] 
  []
 
 
-Overfull \hbox (33.49106pt too wide) in paragraph at lines 927--927
+Overfull \hbox (33.49106pt too wide) in paragraph at lines 929--929
 [][][]            \TU/lmtt/m/n/13 create_at, deleted, remaining_distance, updated_at, order_id)[] 
  []
 
 
-Overfull \hbox (26.79605pt too wide) in paragraph at lines 928--928
+Overfull \hbox (26.79605pt too wide) in paragraph at lines 930--930
 [][][]            \TU/lmtt/m/n/13 VALUES (UUID(), CONCAT(shipping_ward, ',',shipping_district,[] 
  []
 
 
-Overfull \hbox (46.88113pt too wide) in paragraph at lines 929--929
+Overfull \hbox (46.88113pt too wide) in paragraph at lines 931--931
 [][][]            \TU/lmtt/m/n/13 ',' ,shipping_province), NOW(), NOW(), false, 0.000, NOW(), id)[] 
  []
 
 [31]
-Overfull \hbox (13.40596pt too wide) in paragraph at lines 953--953
+Overfull \hbox (13.40596pt too wide) in paragraph at lines 956--956
 [][][]    \TU/lmtt/m/n/13 CREATE PROCEDURE get_orders_by_client(IN p_client_id VARCHAR(255)) 
  []
 
 [32]
-Overfull \hbox (187.45003pt too wide) in paragraph at lines 980--980
+Overfull \hbox (187.45003pt too wide) in paragraph at lines 983--983
 [][][]    \TU/lmtt/m/n/13 CONSTRAINT `FK3wof50lvhiqf1kwe3427our99` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)[] 
  []
 
 
-Overfull \hbox (20.10095pt too wide) in paragraph at lines 987--987
+Overfull \hbox (20.10095pt too wide) in paragraph at lines 990--990
 [][][]    \TU/lmtt/m/n/13 CREATE INDEX idx_fk_order_id ON order_tracking_locations(order_id); 
  []
 
 
-Overfull \hbox (1372.49121pt too wide) in paragraph at lines 994--994
+Overfull \hbox (1372.49121pt too wide) in paragraph at lines 997--997
 [][][] \TU/lmtt/m/n/13 SELECT o.id, o.created_at, thumbnail ,product_name, variant_name, quantity, total_price, status, o.updated_at, shipping_ward, shipping_district, shipping_province, shipping_phone_number, client_id, seller_id, otl.id, address, arrived_at, remaining_distance, otl.updated_at[] 
  []
 
 
-Overfull \hbox (87.051pt too wide) in paragraph at lines 1007--1007
+Overfull \hbox (87.051pt too wide) in paragraph at lines 1010--1010
 [][][]        \TU/lmtt/m/n/13 INSERT INTO order_tracking_locations_update_log(id, order_id, updated_at)[] 
  []
 
-
-Overfull \hbox (33.49101pt too wide) in paragraph at lines 1016--1016
+[33]
+Overfull \hbox (33.49101pt too wide) in paragraph at lines 1019--1019
 [][][]            \TU/lmtt/m/n/13 INSERT INTO order_tracking_locations_delete_log(id, order_id,[] 
  []
 
-[33] [34] [35] [36] [37] [38] [39]) (./chapters/chapter4_features.tex [40]
+[34] [35] [36] [37] [38] [39]
+Overfull \hbox (33.47798pt too wide) in paragraph at lines 1289--1289
+[][][]    \TU/lmtt/m/n/13 CONSTRAINT `FK9h3lcnhbj827axa4ko08wepwp` FOREIGN KEY (`requester_id`)[] 
+ []
+
+
+Overfull \hbox (13.39297pt too wide) in paragraph at lines 1291--1291
+[][][]    \TU/lmtt/m/n/13 CONSTRAINT `FKdn4av77nioo6h57f7h4k8jypm` FOREIGN KEY (`seller_id`)[] 
+ []
+
+
+Overfull \hbox (6.64598pt too wide) in paragraph at lines 1293--1293
+[][][]    \TU/lmtt/m/n/13 CONSTRAINT `FKi7t1qg2r9e076896v9l8tg48t` FOREIGN KEY (`order_id`)[] 
+ []
+
+[40]
+Overfull \hbox (53.57596pt too wide) in paragraph at lines 1302--1302
+[][][]    \TU/lmtt/m/n/13 CREATE INDEX idx_fk_requester_id ON order_refund_requests(requester_id);[] 
+ []
+
+
+Overfull \hbox (133.91597pt too wide) in paragraph at lines 1303--1303
+[][][]    \TU/lmtt/m/n/13 CREATE INDEX idx_requester_id_status ON order_refund_requests(requester_id, status);[] 
+ []
+
+
+Overfull \hbox (80.35597pt too wide) in paragraph at lines 1304--1304
+[][][]    \TU/lmtt/m/n/13 CREATE INDEX idx_order_id_status ON order_refund_requests(order_id, status);[] 
+ []
+
+
+Overfull \hbox (6.71098pt too wide) in paragraph at lines 1312--1312
+[][][]    \TU/lmtt/m/n/13 resolved_at, status, updated_at,order_id, requester_id, seller_id[] 
+ []
+
+[41] [42]) (./chapters/chapter4_features.tex [43]
 Chapter 4.
-[41
+[44
 
 
-]) [42]
+]) [45]
 Overfull \vbox (2443.42601pt too high) has occurred while \output is active []
 
- [43] (./main.bbl) [44
+ [46] (./main.bbl) [47
 
 
 
 ] (./chapters/appendixA.tex
 Appendix A.
-) (./chapters/appendixB.tex [45
+) (./chapters/appendixB.tex [48
 
 
 
@@ -2620,7 +2695,7 @@ Appendix B.
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (c:/texlive/2026/texmf-dist/tex/generic/stringenc/se-utf32be.def
 File: se-utf32be.def 2019/11/29 v1.12 stringenc: UTF-32BE
-) [46
+) [49
 
 
 ] (./main.aux)
@@ -2634,7 +2709,7 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 197AF40EDD2007BF59AAB21CBFE568E1;47504.
+(rerunfilecheck)             Checksum: D170E94A3B06201DC5F0BD6F6A59BCED;48794.
  )
 (\end occurred inside a group at level 2)
 
@@ -2642,12 +2717,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 ### semi simple group (level 1) entered at line 6 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 41278 strings out of 467992
- 845816 string characters out of 5433178
- 1490108 words of memory out of 5000000
- 69464 multiletter control sequences out of 15000+600000
+ 41280 strings out of 467992
+ 845847 string characters out of 5433178
+ 1491441 words of memory out of 5000000
+ 69466 multiletter control sequences out of 15000+600000
  632896 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,34n,131p,2515b,34306s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,34n,131p,2515b,34349s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (60 pages).
+Output written on main.pdf (63 pages).

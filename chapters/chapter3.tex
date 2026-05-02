@@ -907,7 +907,9 @@ CREATE TABLE `orders` (
     CREATE TRIGGER trg_orders_updated_at
     BEFORE UPDATE ON orders
     FOR EACH ROW
-    SET NEW.updated_at = NOW();
+    BEGIN
+        SET NEW.updated_at = NOW();
+    END //
 
     CREATE TRIGGER trg_orders_soft_delete
     BEFORE DELETE ON orders
@@ -916,7 +918,7 @@ CREATE TABLE `orders` (
     SET OLD.deleted = true;
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Use soft delete instead';
-    END;
+    END //
 
     CREATE TRIGGER trg_orders_order_tracking_location_insert
     AFTER UPDATE ON orders
@@ -928,6 +930,7 @@ CREATE TABLE `orders` (
             VALUES (UUID(), CONCAT(shipping_ward, ',',shipping_district, 
             ',' ,shipping_province), NOW(), NOW(), false, 0.000, NOW(), id)
         END IF;
+    END //
 
     CREATE TRIGGER trg_orders_update_log 
     AFTER UPDATE ON orders 
@@ -935,7 +938,7 @@ CREATE TABLE `orders` (
     BEGIN 
         INSERT INTO orders_update_log(id, order_id, updated_at) 
         VALUES (UUID(), id, NOW());
-    END;
+    END //
 
     CREATE TRIGGER trg_orders_delete_log
     AFTER UPDATE ON orders
@@ -945,7 +948,7 @@ CREATE TABLE `orders` (
             INSERT INTO orders_delete_log(id, order_id,
             updated_at) VALUES (UUID(), id, NOW())
         END IF;
-    END;
+    END //
 \end{verbatim}
 
 \subsubsection{Procedure}
@@ -1255,3 +1258,116 @@ JOIN       products        p  ON v.product_id         = p.id
 WHERE      sci.deleted = 0
   AND      sc.deleted  = 0;
 \end{verbatim}
+
+
+\section{Refund}
+
+ \subsection{Table order\_refund\_requests}
+
+ Bảng \texttt{order\_refund\_requests} lưu trữ thông tin các yêu cầu hoàn hàng
+
+ \subsubsection{Cấu trúc bảng}
+
+ \begin{verbatim}
+    CREATE TABLE `order_refund_requests` (
+    `id` varchar(255) NOT NULL,
+    `created_at` datetime(6) NOT NULL,
+    `deleted` tinyint(1) DEFAULT '0',
+    `reason` text NOT NULL,
+    `refund_amount` decimal(38,2) NOT NULL,
+    `refund_type` enum('CLIENT_REFUND','SHIPPER_REFUND') NOT NULL,
+    `resolved_at` datetime(6) DEFAULT NULL,
+    `status` enum('PENDING','REJECTED','APPROVED') NOT NULL,
+    `updated_at` datetime(6) DEFAULT NULL,
+    `order_id` varchar(255) DEFAULT NULL,
+    `requester_id` varchar(255) DEFAULT NULL,
+    `seller_id` varchar(255) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_order_refund_requests_seller` (`seller_id`),
+    KEY `FKi7t1qg2r9e076896v9l8tg48t` (`order_id`),
+    KEY `FK9h3lcnhbj827axa4ko08wepwp` (`requester_id`),
+    CONSTRAINT `FK9h3lcnhbj827axa4ko08wepwp` FOREIGN KEY (`requester_id`) 
+    REFERENCES `users` (`id`),
+    CONSTRAINT `FKdn4av77nioo6h57f7h4k8jypm` FOREIGN KEY (`seller_id`) 
+    REFERENCES `users` (`id`),
+    CONSTRAINT `FKi7t1qg2r9e076896v9l8tg48t` FOREIGN KEY (`order_id`) 
+    REFERENCES `orders` (`id`)
+    );
+ \end{verbatim}
+
+ \subsubsection{Index}
+
+\begin{verbatim}
+    CREATE INDEX idx_fk_order_id ON order_refund_requests(order_id);
+    CREATE INDEX idx_fk_requester_id ON order_refund_requests(requester_id);
+    CREATE INDEX idx_requester_id_status ON order_refund_requests(requester_id, status);
+    CREATE INDEX idx_order_id_status ON order_refund_requests(order_id, status);
+\end{verbatim}
+
+ \subsubsection{View}
+
+ \begin{verbatim}
+    CREATE VIEW order_refund_request_user_view AS 
+	SELECT id, created_at, reason, refund_amount, refund_type, 
+    resolved_at, status, updated_at,order_id, requester_id, seller_id 
+	FROM order_refund_requests 
+	WHERE deleted = false;
+ \end{verbatim}
+
+ \subsubsection{Trigger}
+
+ \begin{verbatim}
+    CREATE TRIGGER trg_orders_update_log 
+    AFTER UPDATE ON orders 
+    FOR EACH ROW 
+    BEGIN 
+        INSERT INTO order_refund_request_update_log(id,
+        order_refund_request_id, updated_at) 
+        VALUES (UUID(), id, NOW());
+    END //
+
+    CREATE TRIGGER trg_orders_delete_log
+    AFTER UPDATE ON orders
+    FOR EACH ROW
+    BEGIN 
+        IF OLD.deleted != NEW.deleted THEN 
+            INSERT INTO orders_delete_log(id,
+            order_refund_request_id, updated_at) 
+            VALUES (UUID(), id, NOW())
+        END IF;
+    END //
+
+    CREATE TRIGGER trg_orders_updated_at
+    BEFORE UPDATE ON order_refund_requests
+    FOR EACH ROW
+    BEGIN
+        SET NEW.updated_at = NOW();
+    END //
+ \end{verbatim}
+
+ \subsubsection{Procedure}
+
+ \begin{verbatim}
+    CREATE PROCEDURE GetRefundRequestByClient(IN p_client_id INT) 
+    BEGIN 
+        SELECT * from order_refund_request 
+        WHERE requester_id = p_client_id AND deleted = false;
+    END //
+
+    CREATE PROCEDURE GetRefundRequestByProduct(IN p_product_id INT) 
+    BEGIN 
+        SELECT ofr.* from order_refund_request ofr 
+        JOIN orders o on o.id = ofr.order_id
+        JOIN variants v on v.id = o.variant_id
+        JOIN products p on p.id = v.product_id
+        WHERE p.id = p_product_id AND and ofr.deleted = false;
+    END //
+
+    CREATE PROCEDURE GetRefundRequestByClient(IN p_seller_id INT) 
+    BEGIN 
+        SELECT * from order_refund_request 
+        WHERE seller = p_seller_id AND deleted = false;
+    END //
+ \end{verbatim}
+
+ \subsubsection{Function}
